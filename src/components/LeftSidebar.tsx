@@ -53,7 +53,7 @@ const LeftSidebar = () => {
                 );
               })
             }
-            <button className="m-4 rounded-full bg-primary p-4 text-center hover:opacity-70 transition duration-200">
+            <button className="m-4 rounded-full bg-twitterColor p-4 text-center hover:opacity-70 transition duration-200">
               Tweet
             </button>
           </div >
