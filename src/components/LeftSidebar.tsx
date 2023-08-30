@@ -39,7 +39,7 @@ const NAVIGATION_ITEMS = [
 
 const LeftSidebar = () => {
   return (
-    <section className="sticky top-0 w-[25%] max-w-[250px] flex flex-col items-stretch h-screen">
+    <section className="sticky top-0 w-[25%] max-w-[250px] xl:flex flex-col items-stretch h-screen hidden">
           <div className="flex flex-col items-stretch h-full space-y-4 mt-4">
             {
               NAVIGATION_ITEMS.map((item) => {

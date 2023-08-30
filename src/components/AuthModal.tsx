@@ -6,6 +6,7 @@ import { Dialog, DialogContent } from './ui/dialog';
 import { Button } from './ui/button';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { toast } from 'sonner';
+import { Toaster } from 'sonner';
 
 interface IAuthModalProps {
     isError: boolean;
@@ -19,7 +20,9 @@ const AuthModal = ({isError}: IAuthModalProps) => {
     const [loading, setLoading] = useState(false);
 
   return (
-      <Dialog defaultOpen={isError}>
+    <>
+        <Toaster position='top-right' richColors />
+        <Dialog defaultOpen={isError}>
             <DialogContent className='p-6'>
                 <h3 className='text-lg my-1 text-black'>Please Sign in to continue</h3>
                 <form onSubmit={async (e) => {
@@ -53,6 +56,8 @@ const AuthModal = ({isError}: IAuthModalProps) => {
                 </form>
             </DialogContent>
         </Dialog>
+    </>
+      
   )
 }
 

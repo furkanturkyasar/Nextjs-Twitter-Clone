@@ -3,7 +3,7 @@ import { BsSearch } from 'react-icons/bs';
 
 const RightSection = () => {
   return (
-    <section className='w-[30%] max-w-[370px] sticky hover:overflow-auto top-2 mt-2 flex flex-col items-stretch h-screen px-6'>
+    <section className='w-[30%] max-w-[370px] sticky hover:overflow-auto top-2 mt-2 xl:flex flex-col items-stretch h-screen px-6 hidden'>
           <div>
             <div className='w-full h-full relative'>
               <input id='searchBox' type="text" placeholder='Search Twitter' className='peer outline-none focus:border-primary focus:border bg-neutral-900/90  w-full h-full rounded-xl pl-14 pr-4 py-4' />
