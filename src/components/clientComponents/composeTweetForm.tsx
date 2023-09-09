@@ -5,10 +5,7 @@ import React, { useRef } from 'react'
 import { toast } from 'sonner';
 
 type ComposeTweetFormProps = {
-    serverAction: (formData: FormData) => Promise<
-    { error: { message: string; }; data?: undefined; }
-    | { data: null; error: PostgrestError | null; } 
-    | undefined>
+    serverAction: any
 }
 
 const ComposeTweetForm = ({serverAction}: ComposeTweetFormProps) => {
@@ -21,7 +18,6 @@ const ComposeTweetForm = ({serverAction}: ComposeTweetFormProps) => {
         if (res?.error) {
             return toast.error(res.error.message)
         }
-        console.log(res);
         resetRef.current?.click();
         return toast.success('Tweet sent successfully');
     }

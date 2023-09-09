@@ -16,16 +16,11 @@ export default async function Home() {
   const {data, error} = await supabase.auth.getUser();
   console.log('data: ',data);
 
-  
-
   return (
-      <div className="w-full h-full flex justify-center items-center relative bg-black">
-        <div className="xl:max-w-[85vw] w-full h-full flex relative">
-          <AuthModal isError={error?.status === 401 ? true : false} />
-          <LeftSidebar/>
-          <Main/>
-          <RightSection/>
-        </div>
-      </div>
+    <>
+      <AuthModal isError={error?.status === 401 ? true : false} />
+      <Main/>
+    </>
+    
   )
 }

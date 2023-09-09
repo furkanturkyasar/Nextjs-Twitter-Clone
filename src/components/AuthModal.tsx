@@ -17,6 +17,7 @@ const AuthModal = ({isError}: IAuthModalProps) => {
     const supabase = createClientComponentClient();
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
+    const [fullname, setFullname] = useState("");
     const [loading, setLoading] = useState(false);
 
   return (
@@ -36,19 +37,27 @@ const AuthModal = ({isError}: IAuthModalProps) => {
                     if (data && data.length > 0)
                         return toast.error('username already exist, please use another one.');
                         
-                    await supabase.auth.signInWithOtp({
+                    const {data: signUpData, error: signUpError} = await supabase.auth.signInWithOtp({
                         email: email.trim(),
                         options: {
                             data: {
-                                username
+                                username,
+                                full_name: fullname,
                             }
                         }
                     })
+
+                    if (signUpError) {
+                        return toast.error(signUpError.message);
+                    }
+
+                    toast.success("Magic link sent successfully")
 
                     setLoading(false);
                 }}>
                     <Input className='text-black' type='email' placeholder='email' onChange={(e) => setEmail(e.target.value)} value={email} />
                     <Input className='text-black' minLength={3} type='text' placeholder='username' onChange={(e) => setUsername(e.target.value)} value={username} />
+                    <Input className='text-black' minLength={3} type='text' placeholder='fullname' onChange={(e) => setFullname(e.target.value)} value={fullname} />
                     <p className='text-sm text-gray-900 my-2'>You will receive a magic link here!</p>
                     <div className='flex w-full justify-end'>
                         <Button disabled={loading} className='bg-twitterColor'>Login</Button>

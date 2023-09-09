@@ -5,6 +5,8 @@ import React from 'react'
 import ComposeTweetForm from '../clientComponents/composeTweetForm';
 import { SupabaseClient} from '@supabase/supabase-js';
 import { revalidatePath } from 'next/cache';
+import { db } from '@/lib/db';
+import { tweets } from '@/lib/db/schema';
 
 const ComposeTweet = () => {
 
@@ -31,11 +33,19 @@ const ComposeTweet = () => {
 
         if(userError) return;
 
-        const {data, error} = await supabaseServer.from('tweets').insert({profile_id: userData.user?.id, text: tweet.toString(), id: randomUUID() })
         
+        let err = "";
+        const res  = await db.insert(tweets).values({
+          profileId: userData.user?.id, 
+          text: tweet.toString(), 
+          id: randomUUID()
+        }).returning().catch(() => {
+          err = "Something went wrong"
+        })
+
         revalidatePath("/");
 
-        return {data, error};
+        return res;
 
     }
   return (
