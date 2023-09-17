@@ -44,7 +44,7 @@ const LeftSidebar = () => {
             {
               NAVIGATION_ITEMS.map((item) => {
                 return(
-                  <Link className={`hover:bg-white/10 text-2xl transition duration-200 flex items-center space-x-4 justify-start w-fit rounded-3xl py-2 px-6`} href={`/${item.title !== "X" ? item.title.toLowerCase() : ""}`} key={item.title}>
+                  <Link className={`hover:bg-white/10 text-2xl transition duration-200 flex items-center space-x-4 justify-start w-fit rounded-3xl py-2 px-6`} href={`/${(item.title === "X" || item.title === "Home") ? "/" : item.title.toLowerCase()}`} key={item.title}>
                     <div><item.icon/></div>
                     {
                         item.title !== "X" &&  <div>{item.title}</div>

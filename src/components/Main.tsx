@@ -4,6 +4,7 @@ import {getTweets} from '@/lib/supabase/queries';
 import Tweet from './clientComponents/tweet';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import { replies } from '@/lib/db/schema';
  
  
 const Main = async () => {
@@ -19,7 +20,7 @@ const Main = async () => {
 
   
   return (
-    <main className='sticky top-0 w-full xl:w-[50%] flex h-full min-h-screen flex-col border-l-[0.5px] border-r-[0.5px] border-gray-600'>
+    <main className='sticky top-0 w-full xl:w-[55%] 2xl:w-[45%] flex h-full min-h-screen flex-col border-l-[0.5px] border-r-[0.5px] border-gray-600'>
           <h1 className='text-xl font-bold p-6 sticky top-0 backdrop-blur bg-black/10'>
             Home
           </h1>
@@ -33,7 +34,8 @@ const Main = async () => {
                 profile,
                 tweet,
                 likes,
-                hasLiked
+                hasLiked,
+                replies
               }) => (
                 <Tweet key={tweet.id} tweet={{
                   tweetDetails: {
@@ -43,6 +45,7 @@ const Main = async () => {
                 }}} currentUserId={userData.user?.id}
                 likesCount={likes.length}
                 hasLiked={hasLiked}
+                repliesCount={replies.length}
                  />
               ))
             }

@@ -18,9 +18,10 @@ type ReplyDialogProps = {
         userProfile: Profile,
         tweetDetails: Tweet
       };
+    repliesCount: number;
 }
 
-const ReplyDialog = ({tweet}: ReplyDialogProps) => {
+const ReplyDialog = ({tweet, repliesCount}: ReplyDialogProps) => {
 
     const [isReplyDialogOpen, setIsReplyDialogOpen] = useState<boolean>(false);
 
@@ -36,6 +37,7 @@ const ReplyDialog = ({tweet}: ReplyDialogProps) => {
                 
             }} className='rounded-full flex items-center space-x-2 hover:bg-white/10 transition duration-200 cursor-pointer p-3'>
                 <BsChat/>
+                <span>{repliesCount || 0}</span>
             </button>
         </DialogTrigger>
         <DialogContent className="bg-black sm:max-w-2xl border-none text-white">
@@ -93,7 +95,7 @@ const ReplyDialog = ({tweet}: ReplyDialogProps) => {
                           }).catch(() => {
                             toast.error('Authentication failed!')
                           })
-                    }} type='submit' className="rounded-full font-bold bg-twitterColor px-4 py-2 w-full text-lg text-center hover:opacity-70 transition duration-200">
+                    }}  className="rounded-full font-bold bg-twitterColor px-4 py-2 w-full text-lg text-center hover:opacity-70 transition duration-200">
                       Reply
                     </button>
                   </div>
